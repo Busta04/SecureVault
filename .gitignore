@@ -1,5 +1,14 @@
+# build system
 build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.ninja
+
+# binaries
 *.exe
-*.o
-*.obj
+*.out
+
+# editor
 .vscode/
