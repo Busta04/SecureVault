@@ -2,8 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "file.h"
-#include "crypto.h"
+#include "crypto/crypto.h"
+#include "fs/file.h"
+#include "utils.h"
 
 int main(int argc, char *argv[])
 {

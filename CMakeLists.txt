@@ -11,8 +11,8 @@ include_directories(include)
 set(SOURCES
     src/main.c
     src/utils.c
-    src/fileio.c
-)
+    src/fs/file.c
+    src/crypto/crypto.c)
 
 # eseguibile
 add_executable(SecureVault ${SOURCES})

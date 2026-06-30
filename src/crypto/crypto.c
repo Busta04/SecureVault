@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "crypto.h"
+
+#include "crypto/crypto.h"
 
 void xor_transform(unsigned char *buffer, size_t length, const unsigned char *key,  size_t key_length){
     if (key_length == 0) return;
