@@ -5,6 +5,8 @@
 
 
 //load the fine in the returned fuffer, allocate memory
+// path i sthe path of the file
+// size is the size of the file for main
 unsigned char *load_file(const char *path, size_t *size)
 {
     FILE *file = fopen(path, "rb");
@@ -15,6 +17,10 @@ unsigned char *load_file(const char *path, size_t *size)
     fseek(file, 0, SEEK_END);
     long length = ftell(file);
     fseek(file, 0, SEEK_SET);
+    if (length<=0){
+        fclose(file);
+        return NULL;
+    }
 
     unsigned char *buffer = malloc(length);
     if (buffer == NULL){
@@ -37,14 +43,20 @@ unsigned char *load_file(const char *path, size_t *size)
 
 
 //create or overvrite the file path, free the memory of buffer
-int save_file(const char *path,  const unsigned char *buffer,  size_t size){
-    FILE *file = fopen(path, "w");
+int save_file(const char *path, const unsigned char *buffer, size_t size){
+    FILE *file = fopen(path, "wb");
+
     if (file == NULL){
-        return NULL;
+        return -1;
     }
 
-    fprintf(file,buffer);
+    size_t written = fwrite(buffer, 1, size, file);
 
     fclose(file);
-    free(buffer);
+
+    if (written != size){
+        return -1;
+    }
+
+    return 0;
 }
